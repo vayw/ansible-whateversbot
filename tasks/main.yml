@@ -1,0 +1,42 @@
+---
+- name: Add user
+  user:
+    name: "{{ bot_user }}"
+    comment: "Whateversbot user"
+
+- name: create bin directory
+  file:
+    path: "{{ bot_dir }}"
+    owner: "{{ bot_user }}"
+    mode: '0755'
+    state: directory
+
+- name: copy binary
+  copy:
+    src: whateversbot
+    dest: "{{ bot_bin }}"
+    owner: "{{ bot_user }}"
+    mode: '0544'
+
+- name: copy config
+  template:
+    src: conf.json.j2
+    dest: "{{ bot_dir }}"
+    owner: "{{ bot_user }}"
+    mode: '0544'
+
+- name: render service file
+  template:
+    src: whateversbot.service.j2
+    dest: "{{ bot_service_file }}"
+    owner: root
+    group: root
+    mode: '644'
+  notify:
+    - reload_systemd
+    - reload_service
+
+- name: enable whateversbot service
+  systemd:
+    name: "{{ bot_service_name }}"
+    enabled: yes

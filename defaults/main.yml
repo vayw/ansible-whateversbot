@@ -1,0 +1,7 @@
+---
+# defaults file for whateversbot
+bot_dir: "/opt/whateversbot"
+bot_bin: "{{ bot_dir }}/whateversbot"
+bot_service_name: "whateversbot"
+bot_service_file: "/etc/systemd/system/{{ bot_service_name }}.service"
+bot_user: whateversbot

@@ -1,0 +1,18 @@
+[Unit]
+Description=Whateversbot service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User={{ bot_user }}
+ExecStart={{ bot_bin }}
+Type=simple
+Restart=on-failure
+RestartSec=1
+StartLimitInterval=0
+WorkingDirectory={{ bot_dir }}
+
+RestrictAddressFamilies=AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target
