@@ -18,12 +18,12 @@
     owner: "{{ bot_user }}"
     mode: '0544'
 
-- name: copy config
+- name: render config
   template:
     src: conf.json.j2
-    dest: "{{ bot_dir }}"
+    dest: "{{ bot_dir }}/conf.json"
     owner: "{{ bot_user }}"
-    mode: '0544'
+    mode: '0644'
 
 - name: render service file
   template:
