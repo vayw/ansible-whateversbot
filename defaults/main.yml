@@ -5,3 +5,4 @@ bot_bin: "{{ bot_dir }}/whateversbot"
 bot_service_name: "whateversbot"
 bot_service_file: "/etc/systemd/system/{{ bot_service_name }}.service"
 bot_user: whateversbot
+bot_release: https://github.com/vayw/whateversbot/releases/download/0.1/whateversbot
